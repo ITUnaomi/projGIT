@@ -61,5 +61,8 @@ public class Personne {
     public void sayHello(){
         System.out.println("Hello Mr Naina");
     }
+     public void sayGoodBye(){
+        System.out.println("Good Bye!");
+    }
     
 }
