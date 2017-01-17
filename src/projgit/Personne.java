@@ -1,6 +1,9 @@
-public /**
- * Personne
- */
+package projgit;
+
+import connexion.Connexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Personne {
 
     private String IdPersonne;
@@ -35,15 +38,27 @@ public class Personne {
     public String getSexe(){
         return Sexe;
     }
-    public Personne (parameters) {
+    public Personne () {
         
     }
     public String toString(){
-        return "('"+IdPersonne+"','"+Nom+"','"+DateNaissance+"','"+Sexe+"')";
+        return "(default,'"+Nom+"','"+DateNaissance+"','"+Sexe+"')";
     }
 
-    public void insert(){
-        Connexion con=new Connexion();
+    public boolean insert() {
+        try {
+            Connexion c=new Connexion();
+            String r=c.createInsertStatement("Personne",this);
+            c.ConnectionDB();
+            c.Insert(r);
+            c.fermer();
+            return true;
+        } catch (Exception ex) {
+           return false;
+        }
         
+    }
+    public void sayHello(){
+        System.out.println("Hello Mr Naina");
     }
 }
